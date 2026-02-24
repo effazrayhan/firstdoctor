@@ -1,0 +1,5 @@
+# jfiojoa
+torch>=2.10.0
+pandas>=2.3.3
+numpy>=2.2.6
+scikit-learn>=1.7.2

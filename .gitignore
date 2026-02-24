@@ -2,7 +2,8 @@ Dataset
 first_doctor
 __pycache__
 venv
-diseaseSymptoms.csv
-diseaseSymptoms.csv
-diseaseSymptoms.csv
-diseaseSymptoms.csv
+.venv
+*.csv
+# --- Don't IGNORE csv inside model/dataset ---
+!model/dataset/*.csv
+
