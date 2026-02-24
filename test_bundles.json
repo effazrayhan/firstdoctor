@@ -1,0 +1,108 @@
+{
+  "escalation_logic": {
+
+    "cardiac_emergency": {
+      "trigger_conditions": [
+        "chest pain",
+        "shortness of breath",
+        "sweating",
+        "pain radiating to arm or jaw"
+      ],
+      "risk_modifiers": [
+        "age > 40",
+        "diabetes",
+        "hypertension",
+        "smoker"
+      ],
+      "action": {
+        "priority": "EMERGENCY",
+        "recommend_tests": ["ECG", "Troponin"],
+        "notes": "Immediate hospital referral"
+      }
+    },
+
+    "stroke_red_flag": {
+      "trigger_conditions": [
+        "sudden weakness",
+        "facial droop",
+        "slurred speech",
+        "sudden vision loss"
+      ],
+      "action": {
+        "priority": "EMERGENCY",
+        "recommend_tests": ["CT Brain"],
+        "notes": "Time-sensitive condition (golden hour)"
+      }
+    },
+
+    "prolonged_fever": {
+      "trigger_conditions": [
+        "fever duration > 5 days"
+      ],
+      "action": {
+        "priority": "HIGH",
+        "recommend_tests": ["Blood Culture", "Dengue Test", "Peripheral Smear (Malaria)"],
+        "notes": "Evaluate for tropical infections"
+      }
+    },
+
+    "anemia_escalation": {
+      "trigger_conditions": [
+        "Hemoglobin < 10"
+      ],
+      "action": {
+        "priority": "MODERATE",
+        "recommend_tests": ["Iron Profile", "Vitamin B12", "Peripheral Smear"],
+        "notes": "Determine anemia type"
+      }
+    },
+
+    "uncontrolled_diabetes": {
+      "trigger_conditions": [
+        "HbA1c > 9%"
+      ],
+      "action": {
+        "priority": "HIGH",
+        "recommend_tests": ["Urine Microalbumin", "Serum Creatinine"],
+        "notes": "Assess kidney involvement"
+      }
+    },
+
+    "severe_headache_red_flag": {
+      "trigger_conditions": [
+        "sudden severe headache",
+        "headache with vomiting",
+        "headache with neurological deficit"
+      ],
+      "action": {
+        "priority": "URGENT",
+        "recommend_tests": ["CT Brain"],
+        "notes": "Rule out hemorrhage"
+      }
+    },
+
+    "persistent_cough": {
+      "trigger_conditions": [
+        "cough duration > 3 weeks"
+      ],
+      "action": {
+        "priority": "HIGH",
+        "recommend_tests": ["Chest X-Ray"],
+        "notes": "Evaluate for TB or chronic lung disease"
+      }
+    },
+
+    "kidney_alert": {
+      "trigger_conditions": [
+        "Serum Creatinine elevated",
+        "reduced urine output",
+        "leg swelling"
+      ],
+      "action": {
+        "priority": "HIGH",
+        "recommend_tests": ["Ultrasound KUB"],
+        "notes": "Assess kidney structure"
+      }
+    }
+  }
+}
