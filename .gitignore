@@ -4,6 +4,6 @@ __pycache__
 venv
 .venv
 *.csv
-# --- Don't IGNORE csv inside model/dataset ---
-!model/dataset/*.csv
+# --- Don't IGNORE csv inside model/database ---
+!model/database/*.csv
 
