@@ -57,9 +57,6 @@ class SymptomClassifier(torch.nn.Module):
         return self.fc2(x)
 
 
-# ---------------------------------------------------------------------------
-# Main class
-# ---------------------------------------------------------------------------
 class DiseaseDetector:
     """End-to-end disease detection: text → symptoms → prediction → PDF."""
 
@@ -87,9 +84,7 @@ class DiseaseDetector:
         # ---- Phase 3 setup: test bundles ----
         self.test_bundles: dict = self._load_test_bundles()
 
-    # ------------------------------------------------------------------
-    # Initialisation helpers
-    # ------------------------------------------------------------------
+
     @staticmethod
     def _load_spacy(model_name: str) -> spacy.language.Language:
         """Load a spaCy model.  Falls back to a blank English model if the
@@ -138,15 +133,34 @@ class DiseaseDetector:
         return le
 
     def _load_model(self) -> SymptomClassifier:
+        """Load the trained PyTorch model from disk."""
         input_dim = len(self.symptom_names)
         output_dim = len(self.label_encoder.classes_)
+        
         model = SymptomClassifier(input_dim, output_dim)
-        state_dict = torch.load(self.weights_path, map_location=self.device)
-        model.load_state_dict(state_dict)
+        
+        if not self.weights_path.exists():
+            print(f"❌ Model file NOT found at: {self.weights_path}")
+            raise FileNotFoundError(
+                f"Model weights not found at {self.weights_path}. "
+                f"Train the model first with model/modelrun.py"
+            )
+        
+        print(f"✅ Loading PyTorch model from: {self.weights_path}")
+        print(f"   File size: {self.weights_path.stat().st_size / 1024:.2f} KB")
+        print(f"   Input dim: {input_dim} symptoms")
+        print(f"   Output dim: {output_dim} diseases")
+        
+        checkpoint = torch.load(self.weights_path, map_location=self.device)
+        model.load_state_dict(checkpoint)
         model.to(self.device)
         model.eval()
+        
+        print(f"✅ Model successfully loaded and ready on device: {self.device}")
+        
         return model
-
+    
+    
     def _load_test_bundles(self) -> dict:
         if not self.test_bundles_path.exists():
             print(
@@ -177,9 +191,7 @@ class DiseaseDetector:
                 patterns.append({"label": "SYMPTOM", "pattern": phrase})
         ruler.add_patterns(patterns)
 
-    # ------------------------------------------------------------------
     # Phase 1 — spaCy keyword / symptom extraction
-    # ------------------------------------------------------------------
     def extract_symptoms(self, text: str) -> list[str]:
         """Extract symptom keywords from free-text input using spaCy
         entity recognition plus simple substring matching against known
@@ -211,9 +223,7 @@ class DiseaseDetector:
 
         return sorted(matched)
 
-    # ------------------------------------------------------------------
     # Phase 2 — Model prediction
-    # ------------------------------------------------------------------
     def predict_diseases(
         self, symptoms: list[str], top_k: int = 3
     ) -> list[dict[str, Any]]:
@@ -234,9 +244,10 @@ class DiseaseDetector:
             logits = self.model(inputs)
             probs = torch.softmax(logits, dim=0).cpu().numpy()
 
-        sorted_idx = np.argsort(probs)[::-1][:top_k]
+        sorted_indices = np.argsort(probs)[::-1]
+        top_indices = sorted_indices[:top_k]
         results = []
-        for idx in sorted_idx:
+        for idx in top_indices:
             results.append(
                 {
                     "disease": self.label_encoder.classes_[idx],
@@ -245,9 +256,6 @@ class DiseaseDetector:
             )
         return results
 
-    # ------------------------------------------------------------------
-    # Phase 3 — Symptom / test mapping from scraped data
-    # ------------------------------------------------------------------
     def get_disease_symptoms(self, disease_name: str) -> list[str]:
         """Look up the dataset for rows matching *disease_name* and
         return the symptom columns that are set to 1 for that disease."""
@@ -328,9 +336,7 @@ class DiseaseDetector:
 
         return result
 
-    # ------------------------------------------------------------------
     # Convenience: full pipeline
-    # ------------------------------------------------------------------
     def run(self, text: str, top_k: int = 3) -> dict[str, Any]:
         """Execute the full pipeline: extract → predict → map.
 
@@ -362,6 +368,7 @@ class DiseaseDetector:
                     "recommended_tests": self.get_recommended_tests(disease),
                 }
             )
+            
 
         return {
             "input_text": text,
@@ -369,9 +376,7 @@ class DiseaseDetector:
             "predictions": enriched,
         }
 
-    # ------------------------------------------------------------------
     # Phase 4 — PDF prescription generation
-    # ------------------------------------------------------------------
     def generate_pdf(
         self,
         result: dict[str, Any],
