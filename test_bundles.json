@@ -1,4 +1,221 @@
 {
+  "diseases": {
+    "asthma": {
+      "synonyms": ["asthma attack", "bronchial asthma"],
+      "tests": ["Pulmonary Function Test (Spirometry)", "Chest X-Ray", "CBC (Complete Blood Count)", "Peak Flow Measurement"],
+      "possible_conditions": ["Allergic rhinitis", "COPD", "Bronchitis"]
+    },
+    "acute bronchitis": {
+      "synonyms": ["bronchitis", "chest cold"],
+      "tests": ["Chest X-Ray", "CBC (Complete Blood Count)", "Sputum Culture", "Pulse Oximetry"],
+      "possible_conditions": ["Pneumonia", "Asthma", "COPD"]
+    },
+    "acute sinusitis": {
+      "synonyms": ["sinus infection", "sinusitis"],
+      "tests": ["Sinus X-Ray", "CBC (Complete Blood Count)", "Nasal Endoscopy", "Culture of Nasal Discharge"],
+      "possible_conditions": ["Chronic sinusitis", "Allergic rhinitis", "Deviated septum"]
+    },
+    "pneumonia": {
+      "synonyms": ["lung infection", "community acquired pneumonia"],
+      "tests": ["Chest X-Ray", "CBC (Complete Blood Count)", "Blood Culture", "Sputum Culture", "Pulse Oximetry"],
+      "possible_conditions": ["Bronchitis", "Tuberculosis", "Lung abscess"]
+    },
+    "tuberculosis": {
+      "synonyms": ["TB", "pulmonary TB"],
+      "tests": ["Chest X-Ray", "Sputum AFB (Acid Fast Bacilli)", "ESR (Erythrocyte Sedimentation Rate)", "Mantoux Test (TB Skin Test)", "GeneXpert MTB/RIF"],
+      "possible_conditions": ["Pneumonia", "Lung cancer", "Sarcoidosis"]
+    },
+    "common cold": {
+      "synonyms": ["upper respiratory infection", "viral rhinitis", "coryza"],
+      "tests": ["No specific tests required", "CBC (if prolonged)"],
+      "possible_conditions": ["Allergic rhinitis", "Sinusitis", "Influenza"]
+    },
+    "influenza": {
+      "synonyms": ["flu", "seasonal flu"],
+      "tests": ["Rapid Influenza Diagnostic Test", "CBC (Complete Blood Count)", "Nasopharyngeal Swab PCR"],
+      "possible_conditions": ["Common cold", "COVID-19", "Pneumonia"]
+    },
+    "allergic rhinitis": {
+      "synonyms": ["hay fever", "allergies"],
+      "tests": ["Allergy Skin Test", "CBC (Eosinophil count)", "Serum IgE Level", "Nasal Endoscopy"],
+      "possible_conditions": ["Sinusitis", "Asthma", "Nasal polyps"]
+    },
+    "depression": {
+      "synonyms": ["major depression", "depressive disorder"],
+      "tests": ["PHQ-9 Questionnaire", "Thyroid Function Test (TSH, T4)", "CBC (Complete Blood Count)", "Vitamin D Level", "B12 Level"],
+      "possible_conditions": ["Anxiety disorder", "Hypothyroidism", "Anemia"]
+    },
+    "anxiety": {
+      "synonyms": ["anxiety disorder", "generalized anxiety", "nervousness"],
+      "tests": ["GAD-7 Questionnaire", "Thyroid Function Test (TSH, T4)", "CBC (Complete Blood Count)", "ECG (if palpitations)"],
+      "possible_conditions": ["Depression", "Hyperthyroidism", "Panic disorder"]
+    },
+    "panic disorder": {
+      "synonyms": ["panic attacks", "anxiety attack"],
+      "tests": ["ECG (Electrocardiogram)", "Thyroid Function Test", "CBC (Complete Blood Count)", "GAD-7 Questionnaire"],
+      "possible_conditions": ["Anxiety disorder", "Hyperthyroidism", "Heart rhythm issues"]
+    },
+    "migraine": {
+      "synonyms": ["migraine headache", "severe headache"],
+      "tests": ["CT Brain (if first episode or red flags)", "MRI Brain (if indicated)", "CBC", "ESR"],
+      "possible_conditions": ["Tension headache", "Cluster headache", "Sinus headache"]
+    },
+    "hypertension": {
+      "synonyms": ["high blood pressure", "elevated blood pressure"],
+      "tests": ["Blood Pressure Monitoring", "Lipid Profile", "Kidney Function Test (Creatinine, BUN)", "ECG", "Urinalysis"],
+      "possible_conditions": ["Heart disease", "Kidney disease", "Stroke"]
+    },
+    "diabetes mellitus": {
+      "synonyms": ["diabetes", "type 2 diabetes", "sugar disease"],
+      "tests": ["Fasting Blood Glucose", "HbA1c", "Lipid Profile", "Kidney Function Test (Creatinine, UACR)", "Fundoscopy (Eye examination)"],
+      "possible_conditions": ["Prediabetes", "Metabolic syndrome", "Insulin resistance"]
+    },
+    "gastroenteritis": {
+      "synonyms": ["stomach flu", "food poisoning", "vomiting and diarrhea"],
+      "tests": ["Stool Routine Examination", "CBC (if dehydrated)", "Electrolytes", "Stool Culture (if persistent)"],
+      "possible_conditions": ["Food poisoning", "Irritable bowel syndrome", "Inflammatory bowel disease"]
+    },
+    "urinary tract infection": {
+      "synonyms": ["UTI", "bladder infection", "cystitis"],
+      "tests": ["Urine Routine Examination (Urine RE)", "Urine Culture and Sensitivity", "CBC (if fever)", "Ultrasound KUB (if recurrent)"],
+      "possible_conditions": ["Kidney infection", "Urethritis", "Interstitial cystitis"]
+    },
+    "anemia": {
+      "synonyms": ["low hemoglobin", "low blood count"],
+      "tests": ["CBC (Complete Blood Count)", "Iron Studies (Ferritin, TIBC)", "Vitamin B12 Level", "Folate Level", "Peripheral Smear"],
+      "possible_conditions": ["Iron deficiency", "Vitamin B12 deficiency", "Chronic disease"]
+    },
+    "arthritis": {
+      "synonyms": ["joint pain", "joint inflammation"],
+      "tests": ["X-Ray of Joint", "CBC", "ESR (Erythrocyte Sedimentation Rate)", "CRP (C-Reactive Protein)", "Rheumatoid Factor", "Anti-CCP"],
+      "possible_conditions": ["Osteoarthritis", "Rheumatoid arthritis", "Gout"]
+    },
+    "dengue fever": {
+      "synonyms": ["dengue", "breakbone fever"],
+      "tests": ["Dengue NS1 Antigen", "Dengue IgM/IgG Antibody", "CBC (Complete Blood Count)", "Platelet Count", "Liver Function Test"],
+      "possible_conditions": ["Malaria", "Influenza", "Leptospirosis"]
+    },
+    "malaria": {
+      "synonyms": ["malaria fever"],
+      "tests": ["Peripheral Smear (for malaria parasites)", "Rapid Malaria Antigen Test", "CBC", "Liver Function Test"],
+      "possible_conditions": ["Dengue", "Typhoid", "Influenza"]
+    },
+    "cough": {
+      "synonyms": ["persistent cough", "chronic cough"],
+      "tests": ["Chest X-Ray", "CBC", "Sputum Examination", "Peak Flow Measurement"],
+      "possible_conditions": ["Bronchitis", "Asthma", "GERD", "Postnasal drip"]
+    },
+    "fever": {
+      "synonyms": ["high fever", "febrile"],
+      "tests": ["CBC (Complete Blood Count)", "Urine RE", "Chest X-Ray (if respiratory symptoms)", "Blood Culture (if high fever)"],
+      "possible_conditions": ["Infection", "Inflammatory condition", "Malignancy"]
+    },
+    "chest pain": {
+      "synonyms": ["chest tightness", "sharp chest pain"],
+      "tests": ["ECG (Electrocardiogram)", "Chest X-Ray", "Troponin I/T", "CBC", "Lipid Profile"],
+      "possible_conditions": ["Heart attack", "Angina", "Gastritis", "Musculoskeletal pain"]
+    },
+    "shortness of breath": {
+      "synonyms": ["difficulty breathing", "breathlessness", "dyspnea"],
+      "tests": ["Chest X-Ray", "CBC", "Pulse Oximetry", "ECG", "Pulmonary Function Test", "BNP (if heart failure suspected)"],
+      "possible_conditions": ["Asthma", "COPD", "Heart failure", "Pneumonia"]
+    },
+    "dizziness": {
+      "synonyms": ["vertigo", "lightheadedness", "giddiness"],
+      "tests": ["CBC", "Blood Sugar (Fasting)", "ECG", "Blood Pressure (lying and standing)", "Vestibular function tests"],
+      "possible_conditions": ["Anemia", "Hypoglycemia", "Inner ear problem", "Low blood pressure"]
+    },
+    "headache": {
+      "synonyms": ["head pain", "cephalalgia"],
+      "tests": ["CBC", "Blood Pressure", "CT Brain (if red flags)", "Sinus X-Ray (if sinusitis suspected)"],
+      "possible_conditions": ["Tension headache", "Migraine", "Sinusitis", "Eye strain"]
+    },
+    "weakness": {
+      "synonyms": ["fatigue", "lethargy", "tiredness"],
+      "tests": ["CBC (Complete Blood Count)", "Blood Sugar (Fasting)", "Thyroid Function Test", "Vitamin B12 Level", "Vitamin D Level"],
+      "possible_conditions": ["Anemia", "Hypothyroidism", "Diabetes", "Chronic fatigue syndrome"]
+    },
+    "abdominal pain": {
+      "synonyms": ["stomach pain", "belly pain"],
+      "tests": ["Ultrasound Whole Abdomen", "CBC", "Urine RE", "Liver Function Test", "Amylase/Lipase"],
+      "possible_conditions": ["Gastritis", "Appendicitis", "Gallstones", "Kidney stones"]
+    },
+    "vomiting": {
+      "synonyms": ["throwing up", "emesis"],
+      "tests": ["CBC", "Electrolytes", "Urine RE", "Ultrasound (if persistent)"],
+      "possible_conditions": ["Gastroenteritis", "Food poisoning", "Migraine", "Pregnancy"]
+    },
+    "diarrhea": {
+      "synonyms": ["loose stools", "watery stools"],
+      "tests": ["Stool Routine Examination", "Stool Culture", "CBC", "Electrolytes"],
+      "possible_conditions": ["Gastroenteritis", "Food intolerance", "Irritable bowel syndrome"]
+    },
+    "rash": {
+      "synonyms": ["skin eruption", "skin lesions"],
+      "tests": ["CBC", "Allergy Skin Test", "IgE Level", "Skin scraping (if fungal)"],
+      "possible_conditions": ["Allergic reaction", "Eczema", "Psoriasis", "Fungal infection"]
+    },
+    "insomnia": {
+      "synonyms": ["sleeplessness", "difficulty sleeping"],
+      "tests": ["Thyroid Function Test", "CBC (rule out anemia)", "Sleep study (if chronic)"],
+      "possible_conditions": ["Anxiety", "Depression", "Sleep apnea", "Poor sleep hygiene"]
+    },
+    "back pain": {
+      "synonyms": ["backache", "lumbar pain"],
+      "tests": ["X-Ray Lumbar Spine", "MRI (if severe or neurological symptoms)", "CBC", "ESR"],
+      "possible_conditions": ["Muscle strain", "Disc herniation", "Arthritis", "Kidney stone"]
+    },
+    "eye pain": {
+      "synonyms": ["ocular pain", "pain in eye"],
+      "tests": ["Visual Acuity Test", "Intraocular Pressure (Tonometry)", "Slit Lamp Examination", "Fundoscopy"],
+      "possible_conditions": ["Conjunctivitis", "Glaucoma", "Uveitis", "Corneal ulcer"]
+    },
+    "ear pain": {
+      "synonyms": ["otalgia", "earache"],
+      "tests": ["Otoscopy", "Audiometry", "CBC (if infection suspected)"],
+      "possible_conditions": ["Otitis media", "Otitis externa", "Ear wax", "TMJ disorder"]
+    },
+    "sore throat": {
+      "synonyms": ["pharyngitis", "throat pain"],
+      "tests": ["Rapid Strep Test", "Throat Culture", "CBC (if severe)"],
+      "possible_conditions": ["Strep throat", "Viral pharyngitis", "Tonsillitis", "GORD"]
+    },
+    "runny nose": {
+      "synonyms": ["rhinorrhea", "nasal discharge"],
+      "tests": ["CBC (if chronic)", "Allergy Test", "Sinus X-Ray (if sinusitis suspected)"],
+      "possible_conditions": ["Allergic rhinitis", "Common cold", "Sinusitis", "Vasomotor rhinitis"]
+    },
+    "nausea": {
+      "synonyms": ["feeling sick", "queasiness"],
+      "tests": ["CBC", "Liver Function Test", "Urine Pregnancy Test (if applicable)", "Electrolytes"],
+      "possible_conditions": ["Gastritis", "Migraine", "Pregnancy", "Inner ear problem"]
+    },
+    "loss of appetite": {
+      "synonyms": ["decreased appetite", "no appetite"],
+      "tests": ["CBC", "Liver Function Test", "Kidney Function Test", "Thyroid Function Test", "Ultrasound Whole Abdomen"],
+      "possible_conditions": ["Depression", "Gastritis", "Chronic illness", "Malignancy"]
+    },
+    "weight loss": {
+      "synonyms": ["unintentional weight loss", "losing weight"],
+      "tests": ["CBC", "Blood Sugar (Fasting)", "Thyroid Function Test", "Liver Function Test", "Kidney Function Test", "Chest X-Ray", "Ultrasound Whole Abdomen"],
+      "possible_conditions": ["Diabetes", "Hyperthyroidism", "Malignancy", "Malabsorption"]
+    },
+    "swelling": {
+      "synonyms": ["edema", "swollen"],
+      "tests": ["CBC", "Kidney Function Test", "Liver Function Test", "Ultrasound (if localized)", "D-dimer (if DVT suspected)"],
+      "possible_conditions": ["Heart failure", "Kidney disease", "Deep vein thrombosis", "Allergic reaction"]
+    },
+    "jaundice": {
+      "synonyms": ["yellow skin", "yellow eyes"],
+      "tests": ["Liver Function Test (Bilirubin, ALT, AST, GGT, ALP)", "CBC", "Viral Hepatitis Panel (A, B, C)", "Ultrasound Hepatobiliary"],
+      "possible_conditions": ["Hepatitis", "Gallstones", "Hemolytic anemia", "Liver cirrhosis"]
+    },
+    "palpitations": {
+      "synonyms": ["heart racing", "irregular heartbeat awareness"],
+      "tests": ["ECG (Electrocardiogram)", "Holter Monitor (24-hour)", "Thyroid Function Test", "CBC", "Electrolytes"],
+      "possible_conditions": ["Arrhythmia", "Hyperthyroidism", "Anxiety", "Anemia"]
+    }
+  },
   "escalation_logic": {
 
     "cardiac_emergency": {
